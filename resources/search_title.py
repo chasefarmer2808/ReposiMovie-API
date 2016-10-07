@@ -1,6 +1,4 @@
 from flask_restful import Resource, reqparse
-import json
-import datetime
 
 from queries.movies_by_title import get_movie_by_title
 
