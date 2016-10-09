@@ -12,7 +12,8 @@ SQL_STATEMENT = ("select m.* "
                  "where "
                     "{} "
                  "group by m.movie_id, m.title, m.budget, m.overview, m.popularity, m.poster_path, m.release_date, m.revenue, m.run_time "
-                 "having count(*) = {}")
+                 "having count(*) = {}"
+                 "order by popularity desc")
 
 
 def rows_to_dict_list(cursor):
