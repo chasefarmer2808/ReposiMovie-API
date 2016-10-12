@@ -10,7 +10,7 @@ os.environ["NLS_LANG"] = ".AL32UTF8"
 
 last_page = 0 #0 if new year or last page printed (before error)
 
-db = cx_Oracle.connect(sql_login1)
+db = cx_Oracle.connect(sql_login)
 cursor = db.cursor()
 
 #helper functions for testing, don't uncomment
