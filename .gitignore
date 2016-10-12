@@ -2,10 +2,3 @@
 /population/config.py
 .idea
 **/__pycache__
-app/__pycache__/__init__.cpython-35.pyc
-app/__pycache__/routes.cpython-35.pyc
-queries/__pycache__/movies.cpython-35.pyc
-resources/__pycache__/__init__.cpython-35.pyc
-resources/__pycache__/search.cpython-35.pyc
-queries/__pycache__/
-resources/__pycache__/
