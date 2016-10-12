@@ -5,7 +5,7 @@ from queries.movies_by_genre import get_movie_by_genre
 class Search_Genre(Resource):
     def get(self):
         parser = reqparse.RequestParser()
-        parser.add_argument('genre', action='append')
+        parser.add_argument('genre', action='append', default='%')
         parser.add_argument('limit', type=int)
         args = parser.parse_args()
 
