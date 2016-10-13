@@ -2,14 +2,14 @@ def noApos(x):
     return x.replace("'","''").replace("’","''").replace("ʼ","''")
 
 def resetTables(cursor):
-    cursor.execute("DELETE FROM Movies")
-    cursor.execute("DELETE FROM Genre")
-    cursor.execute("DELETE FROM Person")
-    cursor.execute("DELETE FROM Company")
     cursor.execute("DELETE FROM has_genre")
     cursor.execute("DELETE FROM has_cast")
     cursor.execute("DELETE FROM has_crew")
     cursor.execute("DELETE FROM produced_by")
+    cursor.execute("DELETE FROM Movies")
+    cursor.execute("DELETE FROM Genre")
+    cursor.execute("DELETE FROM Person")
+    cursor.execute("DELETE FROM Company")
 
 def deleteTables(cursor):
     cursor.execute("DROP TABLE Movies CASCADE CONSTRAINTS")

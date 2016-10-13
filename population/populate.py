@@ -1,6 +1,6 @@
 import cx_Oracle
 import requests
-from config import *
+from config.config import *
 from helper import *
 import time
 import math
