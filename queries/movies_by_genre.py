@@ -26,7 +26,7 @@ def get_movie_by_genre(genres, limit):
     condition_sting = ''
 
     for i in range(0, num_genres):
-        gen = "g.name like '{}'".format(genres[i])
+        gen = "lower(g.name) like '{}'".format(genres[i].lower())
 
         if i != num_genres - 1:
             gen = gen + ' or '
