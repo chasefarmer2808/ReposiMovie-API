@@ -7,6 +7,7 @@ SQL_STATEMENT = "select * from movies where lower(title) like {}"
 
 def rows_to_dict_list(cursor):
     columns = [i[0] for i in cursor.description]
+    columns = [column.lower() for column in columns]
     return [dict(zip(columns, row)) for row in cursor]
 
 def get_movie_by_title(title):

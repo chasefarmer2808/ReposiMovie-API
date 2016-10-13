@@ -18,6 +18,7 @@ SQL_STATEMENT = ("select m.* "
 
 def rows_to_dict_list(cursor):
     columns = [i[0] for i in cursor.description]
+    columns = [column.lower() for column in columns]
     return [dict(zip(columns, row)) for row in cursor]
 
 def get_movie_by_genre(genres, limit):
