@@ -6,6 +6,7 @@ import time
 import math
 import os
 
+#Included so that unicode works with Oracle
 os.environ["NLS_LANG"] = ".AL32UTF8"
 
 last_page = 0 #0 if new year or last page printed (before error)
