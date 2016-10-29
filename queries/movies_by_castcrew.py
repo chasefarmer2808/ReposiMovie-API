@@ -15,6 +15,7 @@ SQL_STATEMENT = (
                     "FROM likeNameMovie1 lnm1, likeNameMovie2 lnm2 "
                     "WHERE lnm1.movie_id = lnm2.movie_id "
                     "AND lnm1.name <> lnm2.name "
+                    "order by lnm1.popularity desc "
                 )
 
 def rows_to_dict_list(cursor):
