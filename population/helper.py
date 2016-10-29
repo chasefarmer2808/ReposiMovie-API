@@ -1,5 +1,26 @@
 def noApos(x):
-    return x.replace("'","''").replace("’","''").replace("ʼ","''")
+    return x.replace("'","''").replace("’","''").replace("ʼ","''").replace("′","''")
+
+def createNameMovieView(cursor):
+    cursor.execute("""
+        CREATE OR REPLACE VIEW nameMovie AS
+            SELECT DISTINCT * FROM (
+                SELECT * FROM
+                    (SELECT m.*, LOWER(p.name) AS name
+                     FROM Movies m
+                         JOIN has_cast hc
+                             ON m.movie_id = hc.movie_id
+                         JOIN Person p
+                             ON hc.person_id = p.person_id)
+                UNION
+                SELECT * FROM
+                    (SELECT m.*, LOWER(p.name) AS name
+                     FROM Movies m
+                         JOIN has_crew hc
+                             ON m.movie_id = hc.movie_id
+                         JOIN Person p
+                             ON hc.person_id = p.person_id))
+        """)
 
 def resetTables(cursor):
     cursor.execute("DELETE FROM has_genre")
