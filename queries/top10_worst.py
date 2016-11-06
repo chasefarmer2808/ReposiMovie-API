@@ -3,7 +3,7 @@ import cx_Oracle
 from config.config import *
 
 ORACLE_CONN_STRING = sql_login
-SQL_STATEMENT = "select * from ( select * from MOVIES where budget > 0 and rating_count > 30 order by rating_average ASC) where rownum <= 10;"
+SQL_STATEMENT = "select * from ( select * from MOVIES where budget > 0 and rating_count > 30 order by rating_average ASC) where rownum <= 10"
 #top 10 worst movies all time
 
 def rows_to_dict_list(cursor):
