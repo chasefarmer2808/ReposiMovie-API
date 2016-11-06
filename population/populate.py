@@ -14,10 +14,12 @@ last_page = 0 #0 if new year or last page printed (before error)
 db = cx_Oracle.connect(sql_login)
 cursor = db.cursor()
 
+createNameMovieView(cursor)
+
 #helper functions for testing, don't uncomment
 #resetTables(cursor)
-deleteTables(cursor)
-remakeTables(cursor)
+#deleteTables(cursor)
+#remakeTables(cursor)
 db.commit()
 
 #prints number of records in each table

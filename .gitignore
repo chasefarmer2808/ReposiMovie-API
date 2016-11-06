@@ -1,4 +1,4 @@
 /config
-/population/config.py
 .idea
 **/__pycache__
+*.pyc

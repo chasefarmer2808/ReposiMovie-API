@@ -11,7 +11,7 @@ SQL_STATEMENT = ("select m.* "
                     "inner join genre g on g.genre_id = hg.genre_id "
                  "where "
                     "{} "
-                 "group by m.movie_id, m.title, m.budget, m.overview, m.popularity, m.poster_path, m.release_date, m.revenue, m.run_time "
+                 "group by m.movie_id, m.title, m.budget, m.overview, m.popularity, m.poster_path, m.release_date, m.rating_average, m.rating_count, m.revenue, m.run_time "
                  "having count(*) = {}"
                  "order by popularity desc")
 
