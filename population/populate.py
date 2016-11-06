@@ -16,8 +16,8 @@ cursor = db.cursor()
 
 #helper functions for testing, don't uncomment
 #resetTables(cursor)
-#deleteTables(cursor)
-#remakeTables(cursor)
+deleteTables(cursor)
+remakeTables(cursor)
 db.commit()
 
 #prints number of records in each table
@@ -30,7 +30,7 @@ records = 0
 
 for year in range(1990,2016):
     discover = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&primary_release_year=' + str(year) + '&api_key=' + api_key + '&page='
-    for page in range(last_page + 1,11):
+    for page in range(last_page + 1,16):
         r1 = requests.get(discover + str(page)).json()
         while ('results' not in r1):
             time.sleep(.25)
@@ -53,9 +53,15 @@ for year in range(1990,2016):
             dbcall = dbcall + str(r2['budget']) + ','
             dbcall = dbcall + str(r2['revenue']) + ','
             dbcall = dbcall + str(r2['popularity']) + ','
-            dbcall = dbcall + "N'" + noApos(r2['overview']) + "',"
+            dbcall = dbcall + str(r2['vote_average']) + ','
+            dbcall = dbcall + str(r2['vote_count']) + ','
+            dbcall = dbcall + "N'" + noApos(str(r2['overview'])) + "',"
             dbcall = dbcall + "'" + str(r2['poster_path']) + "',"
-            dbcall = dbcall + str(r2['runtime']) + ")"
+            runtime = str(r2['runtime'])
+            if (runtime == 'None'):
+                dbcall = dbcall + 'null' + ")"
+            else:
+                dbcall = dbcall + runtime + ")"
             cursor.execute(dbcall)
             records = records + 1
             for genre in r2['genres']:

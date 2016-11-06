@@ -50,6 +50,8 @@ def remakeTables(cursor):
             budget number,
             revenue number,
             popularity number,
+            rating_average number,
+            rating_count number,
             overview varchar(2000),
             poster_path varchar(100),
             run_time number)

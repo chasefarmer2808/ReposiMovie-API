@@ -11,7 +11,7 @@ SQL_STATEMENT = (
                      "likeNameMovie2 AS "
                     "(SELECT * FROM nameMovie nm "
                      "WHERE nm.name like '{}') "
-                "SELECT DISTINCT lnm1.movie_id, lnm1.title, lnm1.budget, lnm1.overview, lnm1.popularity, lnm1.poster_path, lnm1.release_date, lnm1. revenue, lnm1.run_time "
+                "SELECT DISTINCT lnm1.movie_id, lnm1.title, lnm1.budget, lnm1.overview, lnm1.popularity, lnm1.rating_average, lnm1.rating_count, lnm1.poster_path, lnm1.release_date, lnm1. revenue, lnm1.run_time "
                     "FROM likeNameMovie1 lnm1, likeNameMovie2 lnm2 "
                     "WHERE lnm1.movie_id = lnm2.movie_id "
                     "AND lnm1.name <> lnm2.name "
