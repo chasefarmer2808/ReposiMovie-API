@@ -17,7 +17,6 @@ def get_genres():
 
     cursor.execute(SQL_STATEMENT)
 
-    #ret = cursor.fetchall()
     ret = []
 
     for row in cursor:
