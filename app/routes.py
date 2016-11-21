@@ -6,6 +6,7 @@ from resources.person_id import Person_Id
 from resources.get_genre_names import Get_Genre_Names
 from resources.top10 import Top10
 from resources.min_release_date import Min_Release_Date
+from resources.get_all_companies import Get_All_Companies
 
 API_PREFIX = '/api/v1'
 SEARCH_SUFFIX = '/search_title'
@@ -16,6 +17,7 @@ PERSON_ID_SUFFIX = '/person'
 Get_Genre_Names_SUFFIX = '/get_all_genres'
 TOP10_SUFFIX = '/top10'
 MIN_RELEASE_DATE_SUFFIX = '/get_min_release_date'
+GET_ALL_COMPANIES_SUFFIX = '/get_all_companies'
 
 def init_routes(api):
     api.add_resource(Search_Title, API_PREFIX + SEARCH_SUFFIX)
@@ -26,3 +28,4 @@ def init_routes(api):
     api.add_resource(Get_Genre_Names, API_PREFIX + Get_Genre_Names_SUFFIX)
     api.add_resource(Top10, API_PREFIX + TOP10_SUFFIX)
     api.add_resource(Min_Release_Date, API_PREFIX + MIN_RELEASE_DATE_SUFFIX)
+    api.add_resource(Get_All_Companies, API_PREFIX + GET_ALL_COMPANIES_SUFFIX)
