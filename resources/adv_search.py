@@ -1,6 +1,6 @@
 import datetime
 
-from flask_restful import Resource, reqparse
+from flask_restful import Resource, reqparse, abort
 
 DATE_FORMAT = '%m-%d-%Y'
 
@@ -23,6 +23,10 @@ class Adv_Search(Resource):
 
         args['startDate'] = datetime.datetime.strptime(args['startDate'], DATE_FORMAT)
         args['endDate'] = datetime.datetime.strptime(args['endDate'], DATE_FORMAT)
+
+        if args['startDate'] > args['endDate']:
+            abort(400, message='Start date must be before End date')
+
         args['avgRating'] = {
             'value': args['avgRating'][0:len(args['avgRating'])-1],
             'equality': args['avgRating'][len(args['avgRating'])-1]
