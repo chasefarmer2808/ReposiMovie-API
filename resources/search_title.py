@@ -6,8 +6,9 @@ class Search_Title(Resource):
     def get(self):
         parser = reqparse.RequestParser()
         parser.add_argument('title', default="'%'")
+        parser.add_argument('limit', type=int, default=0)
         args = parser.parse_args()
 
-        movies = get_movie_by_title(args['title'])
+        movies = get_movie_by_title(args['title'], args['limit'])
 
         return movies
