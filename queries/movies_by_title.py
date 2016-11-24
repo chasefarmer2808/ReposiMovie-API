@@ -10,7 +10,9 @@ def rows_to_dict_list(cursor):
     columns = [column.lower() for column in columns]
     return [dict(zip(columns, row)) for row in cursor]
 
-def get_movie_by_title(title):
+def get_movie_by_title(title, limit):
+    global SQL_STATEMENT
+    statement = SQL_STATEMENT
 
     if '%' not in title:
         title = title.replace("'", "''").replace("’", "''").replace("ʼ", "''").lower()
@@ -19,7 +21,12 @@ def get_movie_by_title(title):
     con = cx_Oracle.connect(ORACLE_CONN_STRING)
     cursor = con.cursor()
 
-    cursor.execute(SQL_STATEMENT.format(title))
+    if limit == 0:
+        statement += ' and rownum > {}'
+    else:
+        statement += ' and rownum <= {}'
+
+    cursor.execute(statement.format(title, limit))
 
     ret = rows_to_dict_list(cursor)
 
