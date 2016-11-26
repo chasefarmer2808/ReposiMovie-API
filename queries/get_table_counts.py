@@ -20,7 +20,11 @@ def get_table_counts():
     for table in TABLE_NAMES:
         cursor.execute(SQL_STATEMENT.format(table, table))
         count = rows_to_dict_list(cursor)
-        ret.append(count[0])
+        temp = {
+            'name': table,
+            'count': count[0][table]
+        }
+        ret.append(temp)
 
     con.close()
     return ret
