@@ -10,6 +10,7 @@ from resources.get_all_companies import Get_All_Companies
 from resources.get_all_cast import Get_All_Cast
 from resources.get_all_crew import Get_All_Crew
 from resources.adv_search import Adv_Search
+from resources.get_table_counts import Get_Table_Counts
 
 API_PREFIX = '/api/v1'
 SEARCH_SUFFIX = '/search_title'
@@ -24,6 +25,7 @@ GET_ALL_COMPANIES_SUFFIX = '/get_all_companies'
 GET_ALL_CAST_SUFFIX = '/get_all_cast'
 GET_ALL_CREW_SUFFIX = '/get_all_crew'
 ADV_SEARCH_SUFFIX = '/adv_search'
+GET_TABLE_COUNTS_SUFFIX = '/get_table_counts'
 
 def init_routes(api):
     api.add_resource(Search_Title, API_PREFIX + SEARCH_SUFFIX)
@@ -38,3 +40,4 @@ def init_routes(api):
     api.add_resource(Get_All_Cast, API_PREFIX + GET_ALL_CAST_SUFFIX)
     api.add_resource(Get_All_Crew, API_PREFIX + GET_ALL_CREW_SUFFIX)
     api.add_resource(Adv_Search, API_PREFIX + ADV_SEARCH_SUFFIX)
+    api.add_resource(Get_Table_Counts, API_PREFIX + GET_TABLE_COUNTS_SUFFIX)
