@@ -13,6 +13,7 @@ from resources.adv_search import Adv_Search
 from resources.get_table_counts import Get_Table_Counts
 from resources.search_name import Search_Name
 from resources.movies_by_director import Movies_By_Director
+from resources.get_all_people import Get_All_People
 
 API_PREFIX = '/api/v1'
 SEARCH_SUFFIX = '/search_title'
@@ -30,6 +31,7 @@ ADV_SEARCH_SUFFIX = '/adv_search'
 GET_TABLE_COUNTS_SUFFIX = '/get_table_counts'
 SEARCH_NAME_SUFFIX =  '/search_name'
 MOVIES_BY_DIRECTOR_SUFFIX = '/movies_by_director'
+GET_ALL_PEOPLE_SUFFIX = '/get_all_people'
 
 def init_routes(api):
     api.add_resource(Search_Title, API_PREFIX + SEARCH_SUFFIX)
@@ -47,3 +49,4 @@ def init_routes(api):
     api.add_resource(Get_Table_Counts, API_PREFIX + GET_TABLE_COUNTS_SUFFIX)
     api.add_resource(Search_Name,API_PREFIX + SEARCH_NAME_SUFFIX)
     api.add_resource(Movies_By_Director, API_PREFIX + MOVIES_BY_DIRECTOR_SUFFIX)
+    api.add_resource(Get_All_People, API_PREFIX + GET_ALL_PEOPLE_SUFFIX)
