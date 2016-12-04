@@ -76,7 +76,7 @@ def get_movies_advanced(title, startDate, endDate, avgRating, ratingCount, reven
             "(SELECT * FROM nameMovie nm "
             "WHERE nm.name like '%{}%') "
             )
-        tables = table.format(0,noApos(people[0]))
+        tables = table.format(0,noApos(people[0].lower()))
         fromTable = "likeNameMovie{} lnm{}"
         fromTables = fromTable.format(0,0)
         notEqual = "lnm0.movie_id = lnm{}.movie_id "
@@ -87,7 +87,7 @@ def get_movies_advanced(title, startDate, endDate, avgRating, ratingCount, reven
         for i in range(1,len(people)):
             if people[i]:
                 tables += ", "
-                tables += table.format(i,noApos(people[i]))
+                tables += table.format(i,noApos(people[i].lower()))
                 fromTables += ", "
                 fromTables += fromTable.format(i,i)
                 if (i > 1):

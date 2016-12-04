@@ -35,7 +35,7 @@ def get_movie_by_castcrew(name, limit):
             "(SELECT * FROM nameMovie nm "
             "WHERE nm.name like '%{}%') "
             )
-        tables = table.format(0,noApos(name[0]))
+        tables = table.format(0,noApos(name[0].lower()))
         fromTable = "likeNameMovie{} lnm{}"
         fromTables = fromTable.format(0,0)
         notEqual = "lnm0.movie_id = lnm{}.movie_id "
@@ -46,7 +46,7 @@ def get_movie_by_castcrew(name, limit):
         for i in range(1,len(name)):
             if name[i]:
                 tables += ", "
-                tables += table.format(i,noApos(name[i]))
+                tables += table.format(i,noApos(name[i].lower()))
                 fromTables += ", "
                 fromTables += fromTable.format(i,i)
                 if (i > 1):
