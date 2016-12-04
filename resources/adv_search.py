@@ -27,4 +27,4 @@ class Adv_Search(Resource):
         if convert(args['startDate'], DATE_FORMAT) > convert(args['endDate'], DATE_FORMAT):
             return []
 
-        return args,
+        return get_movies_advanced(args['title'], args['startDate'], args['endDate'], args['avgRating'], args['ratingCount'], args['revenue'], args['budget'], args['runtime'], args['genres'], args['companies'], args['people'], args['limit'])
