@@ -55,7 +55,7 @@ def get_movies_advanced(title, startDate, endDate, avgRating, ratingCount, reven
         for i in range(0, len(genres)):
             if (i > 0):
                 genreConditions += "OR "
-            genreConditions += "g.name = '" + noApos(genres[i]) + "' "
+            genreConditions += "LOWER(g.name) = '" + noApos(genres[i].lower()) + "' "
         genreConditions += ") "
 
     if (len(companies) > 0):
@@ -63,7 +63,7 @@ def get_movies_advanced(title, startDate, endDate, avgRating, ratingCount, reven
         for i in range(0, len(companies)):
             if (i > 0):
                 companyConditions += "OR "
-            companyConditions += "c.name = '" + noApos(companies[i]) + "' "
+            companyConditions += "LOWER(c.name) = '" + noApos(companies[i].lower()) + "' "
         companyConditions += ") "
 
     default = SQL_STATEMENT_DEFAULT.format(title.lower(), startDate, endDate, avgRating, ratingCount, revenue, budget, runtime, genreConditions, companyConditions, len(genres), len(companies))
