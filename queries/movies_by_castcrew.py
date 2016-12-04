@@ -20,7 +20,7 @@ def rows_to_dict_list(cursor):
     columns = [column.lower() for column in columns]
     return [dict(zip(columns, row)) for row in cursor]
 
-def get_movie_by_castcrew(name):
+def get_movie_by_castcrew(name, limit):
     con = cx_Oracle.connect(ORACLE_CONN_STRING)
     cursor = con.cursor()
     ret = {}
@@ -58,6 +58,6 @@ def get_movie_by_castcrew(name):
     ret = rows_to_dict_list(cursor)
 
     con.close()
-    return ret
+    return ret[0:limit]
 
 
