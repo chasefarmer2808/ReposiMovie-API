@@ -1,6 +1,7 @@
 import cx_Oracle
 
 from config.config import *
+from population.helper import noApos
 
 ORACLE_CONN_STRING = sql_login
 
@@ -31,7 +32,8 @@ SQL_STATEMENT_DEFAULT = (
                     "{} "
                     "{} "
                 "GROUP BY m.movie_id, m.title, m.budget, m.overview, m.popularity, m.poster_path, m.release_date, m.rating_average, m.rating_count, m.revenue, m.run_time "
-                "HAVING COUNT(*) >= {} "
+                "HAVING COUNT(DISTINCT g.name) >= {} "
+                "AND COUNT(DISTINCT c.name) >= {} "
                 "ORDER BY m.popularity DESC"
                 )
 
@@ -53,7 +55,7 @@ def get_movies_advanced(title, startDate, endDate, avgRating, ratingCount, reven
         for i in range(0, len(genres)):
             if (i > 0):
                 genreConditions += "OR "
-            genreConditions += "g.name = '" + genres[i] + "' "
+            genreConditions += "g.name = '" + noApos(genres[i]) + "' "
         genreConditions += ") "
 
     if (len(companies) > 0):
@@ -61,12 +63,10 @@ def get_movies_advanced(title, startDate, endDate, avgRating, ratingCount, reven
         for i in range(0, len(companies)):
             if (i > 0):
                 companyConditions += "OR "
-            companyConditions += "c.name = '" + companies[i] + "' "
+            companyConditions += "c.name = '" + noApos(companies[i]) + "' "
         companyConditions += ") "
 
-    count = (1 if len(genres) == 0 else len(genres)) * (1 if len(companies) == 0 else len(companies))
-
-    default = SQL_STATEMENT_DEFAULT.format(title.lower(), startDate, endDate, avgRating, ratingCount, revenue, budget, runtime, genreConditions, companyConditions, count)
+    default = SQL_STATEMENT_DEFAULT.format(title.lower(), startDate, endDate, avgRating, ratingCount, revenue, budget, runtime, genreConditions, companyConditions, len(genres), len(companies))
 
     if not people:
         cursor.execute(default)
@@ -76,7 +76,7 @@ def get_movies_advanced(title, startDate, endDate, avgRating, ratingCount, reven
             "(SELECT * FROM nameMovie nm "
             "WHERE nm.name like '%{}%') "
             )
-        tables = table.format(0,people[0])
+        tables = table.format(0,noApos(people[0]))
         fromTable = "likeNameMovie{} lnm{}"
         fromTables = fromTable.format(0,0)
         notEqual = "lnm0.movie_id = lnm{}.movie_id "
@@ -87,7 +87,7 @@ def get_movies_advanced(title, startDate, endDate, avgRating, ratingCount, reven
         for i in range(1,len(people)):
             if people[i]:
                 tables += ", "
-                tables += table.format(i,people[i])
+                tables += table.format(i,noApos(people[i]))
                 fromTables += ", "
                 fromTables += fromTable.format(i,i)
                 if (i > 1):
@@ -95,7 +95,6 @@ def get_movies_advanced(title, startDate, endDate, avgRating, ratingCount, reven
                 notEquals += notEqual.format(i,i)
 
         query = SQL_STATEMENT.format(tables, fromTables, notEquals).replace('\n', '') + default + ")"
-        #return query
         cursor.execute(query)
 
     ret = rows_to_dict_list(cursor)
