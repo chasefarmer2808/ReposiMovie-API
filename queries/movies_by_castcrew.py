@@ -13,7 +13,10 @@ SQL_STATEMENT = (
                     "order by lnm0.popularity desc "
                 )
 
-SQL_STATEMENT_DEFAULT = "SELECT * FROM Movies"
+SQL_STATEMENT_DEFAULT = (
+                "SELECT * FROM Movies "
+                    "ORDER BY popularity DESC"
+                )
 
 def rows_to_dict_list(cursor):
     columns = [i[0] for i in cursor.description]
